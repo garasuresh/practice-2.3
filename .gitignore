@@ -1,6 +1,7 @@
 .idea
 .vagrant
 composer.phar
+composer.lock
 web/bundles
 web/js/
 web/css/
