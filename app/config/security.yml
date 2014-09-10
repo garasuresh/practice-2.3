@@ -51,3 +51,6 @@ security:
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/demo/secured/hello/admin/, roles: ROLE_ADMIN }
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
+
+    acl:
+        connection: default
