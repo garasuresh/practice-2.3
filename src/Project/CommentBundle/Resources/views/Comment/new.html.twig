@@ -6,10 +6,13 @@
         {% if comments is defined and comments is not null %}
             <div class="comments-list">
                 {% for comment in comments %}
-                    <div>{{ comment.description }}</div>
+                    <div class="active">{{ comment.description }} <span class="pull-right"><i class="glyphicon glyphicon-pencil"></i> </span></div>
                 {%endfor%}
             </div>
         {% endif %}
-        {{ form(form) }}
+
+        <div class="form-group">
+            {{ form(form) }}
+        </div>
     </div>
 {% endblock %}
