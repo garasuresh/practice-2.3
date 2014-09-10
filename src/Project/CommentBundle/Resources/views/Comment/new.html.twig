@@ -1,0 +1,15 @@
+{% extends 'BpCommonBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header"><h2>Comment</h2></div>
+    <div class="content">
+        {% if comments is defined and comments is not null %}
+            <div class="comments-list">
+                {% for comment in comments %}
+                    <div>{{ comment.description }}</div>
+                {%endfor%}
+            </div>
+        {% endif %}
+        {{ form(form) }}
+    </div>
+{% endblock %}
