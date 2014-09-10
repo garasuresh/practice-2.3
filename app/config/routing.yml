@@ -1,3 +1,7 @@
+project_comment:
+    resource: "@ProjectCommentBundle/Resources/config/routing.yml"
+    prefix:   /
+
 bp_common:
     resource: "@BpCommonBundle/Resources/config/routing.yml"
     prefix:   /
