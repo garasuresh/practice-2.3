@@ -5,6 +5,10 @@ namespace Project\CommentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+
 use Doctrine\ORM\EntityManager;
 
 use Bp\CommonBundle\Entity\User;
@@ -35,6 +39,18 @@ class CommentController extends Controller
             $comment->setUser($user);
             $em->persist($comment);
             $em->flush();
+
+            // Creating acl
+            $aclProvider = $this->get('security.acl.provider');
+            $objIdentity = ObjectIdentity::fromDomainObject($comment);
+            $acl = $aclProvider->createAcl($objIdentity);
+
+            // retrieving the security identity of the currently logged-in user
+            $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+            // grant owner access
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $aclProvider->updateAcl($acl);
 
             return $this->redirect($this->generateUrl('project_comment_new'));
         }
