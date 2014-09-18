@@ -1,0 +1,16 @@
+{% extends '::base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/bpcommon/css/bootstrap/bootstrap.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('bundles/bpcommon/js/jquery-1.11.1.min.js') }}"></script>
+    <script src="{{ asset('bundles/bpcommon/js/bootstrap/bootstrap.js') }}"></script>
+{% endblock %}

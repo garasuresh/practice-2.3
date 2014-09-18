@@ -1,0 +1,20 @@
+{% extends 'BpCommonBundle::layout.html.twig' %}
+
+{% block content %}
+    <div class="page-header"><h2>Comments</h2></div>
+    <div class="content">
+        {% if comments is defined and comments is not null %}
+            <div class="comments-list">
+                {% for comment in comments %}
+                    <div class="active">{{ comment.description }}{% if is_granted('EDIT', comment) %}  <a href="#">EDIT{%endif%}</a></div>
+                {%endfor%}
+            </div>
+        {% endif %}
+
+        <div class="form-group">
+            {{ form(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+{#ACL concept#}
