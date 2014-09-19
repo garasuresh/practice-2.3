@@ -73,5 +73,6 @@ fos_user:
 services:
     kernel.listener.exception_listener:
         class: Bp\CommonBundle\EventListener\BpExceptionListener
+        arguments: [ @templating ]
         tags:
             - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

@@ -12,22 +12,27 @@ namespace Bp\CommonBundle\EventListener;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
-
+use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 class BpExceptionListener {
+
+    private $templateEngine;
+
+    public function __construct( EngineInterface $templateEngine ){
+        $this->templateEngine = $templateEngine;
+    }
+
     public function onKernelException(GetResponseForExceptionEvent $event){
         // You get the exception object from the received event
         /** @var  $exception \Exception */
         $exception = $event->getException();
 
-        $message = sprintf(
-            'My Error says: %s with code: %s',
-            $exception->getMessage(),
-            $exception->getStatusCode()
-        );
-
         // Customize your response object to display the exception details
         $response = new Response();
-        $response->setContent($message);
+        $response->setContent(
+            $this->templateEngine->render(
+                'BpCommonBundle:Exception:exception-404.html.twig',array('exception' => $exception)
+            )
+        );
 
         // HttpExceptionInterface is a special type of exception that
         // holds status code and header details
