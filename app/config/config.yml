@@ -69,3 +69,10 @@ fos_user:
     db_driver: orm
     firewall_name: main
     user_class: Bp\CommonBundle\Entity\User
+
+services:
+    kernel.listener.exception_listener:
+        class: Bp\CommonBundle\EventListener\BpExceptionListener
+        arguments: [ @templating ]
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }

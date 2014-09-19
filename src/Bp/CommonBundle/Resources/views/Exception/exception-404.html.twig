@@ -1,0 +1,9 @@
+{% extends 'BpCommonBundle::layout.html.twig' %}
+
+{% block content %}
+    {#{{ exception.message }}#}
+    <div>
+        <div>Custom exception page:</div>
+        </div>My Error says:  {{ exception.message }} with code: {{ exception.statusCode }}</div>
+    </div>
+{%endblock%}
