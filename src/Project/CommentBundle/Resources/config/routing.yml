@@ -1,8 +1,0 @@
-project_comment_new:
-    path:     /comment/new
-    defaults: { _controller: ProjectCommentBundle:Comment:newComment }
-
-project_comment_create:
-    path:     /comment/create
-    defaults: { _controller: ProjectCommentBundle:Comment:createComment }
-    methods:  [POST]
